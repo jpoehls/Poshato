@@ -12,7 +12,7 @@
 #RootModule = ''
 
 # Version number of this module.
-ModuleVersion = '1.0.0'
+ModuleVersion = '1.1.0'
 
 # ID used to uniquely identify this module
 GUID = '3e73e643-1115-4b14-8baf-0cf96da2abec'
@@ -68,8 +68,9 @@ NestedModules = @(
 				  ".\bookmarks.psm1",
 				  ".\Elevate-Process.ps1",
 				  ".\encoding-helpers.ps1",
-                  ".\Get-Uptime.ps1",
+          ".\Get-Uptime.ps1",
 				  ".\hg_helpers.ps1",
+				  ".\Join-Object.psm1",
 				  ".\mklink.psm1",
 				  ".\notes.ps1",
 				  ".\PathHelpers.ps1",
