@@ -45,4 +45,6 @@ function Benchmark-Command ([ScriptBlock]$Expression, [int]$Samples = 1, [Switch
   }
 }
 
-Export-ModuleMember Benchmark-Command
+New-Alias -Name time -Value Benchmark-Command
+
+Export-ModuleMember -Function Benchmark-Command -Alias time
