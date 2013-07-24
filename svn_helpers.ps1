@@ -1,4 +1,4 @@
-function Svn-Tortoise([string]$Command = "commit") {
+function Invoke-SvnTortoise([string]$Command = "commit") {
 <#
 .SYNOPSIS
   Launches TortoiseSVN with the given command.

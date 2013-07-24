@@ -8,7 +8,7 @@ function Get-Directory([string]$Path) {
 
 }
 
-function Shorten-Path([string] $Path) { 
+function Get-ShortPath([string] $Path) { 
 <#
 http://winterdom.com/2008/08/mypowershellprompt
 #>

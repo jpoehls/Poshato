@@ -1,4 +1,4 @@
-function Benchmark-Command ([ScriptBlock]$Expression, [int]$Samples = 1, [Switch]$Silent, [Switch]$Long) {
+function Measure-CommandBenchmark ([ScriptBlock]$Expression, [int]$Samples = 1, [Switch]$Silent, [Switch]$Long) {
 <#
 .SYNOPSIS
   Runs the given script block and returns the execution duration.
@@ -6,6 +6,9 @@ function Benchmark-Command ([ScriptBlock]$Expression, [int]$Samples = 1, [Switch
   
 .EXAMPLE
   Benchmark-Command { ping -n 1 google.com }
+
+.NOTES
+  Author: Joshua Poehls
 #>
   $timings = @()
   do {
@@ -45,6 +48,6 @@ function Benchmark-Command ([ScriptBlock]$Expression, [int]$Samples = 1, [Switch
   }
 }
 
-New-Alias -Name time -Value Benchmark-Command
+New-Alias -Name time -Value Measure-CommandBenchmark
 
-Export-ModuleMember -Function Benchmark-Command -Alias time
+Export-ModuleMember -Function Measure-CommandBenchmark -Alias time

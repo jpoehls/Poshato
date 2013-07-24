@@ -6,10 +6,11 @@ function Set-VoiceSpeed([int]$speed) {
 
 Set-VoiceSpeed -2
 
-function Say([string]$what) {
+function Invoke-VoiceSpeech([string]$what) {
 
     # replace some common stuff so that it is pronounced right
     $what = $what -replace "iphone", "i-phone"
 
     $voice.Speak($what, 1) | Out-Null
 }
+Set-Alias say Invoke-Speech

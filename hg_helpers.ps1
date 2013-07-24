@@ -1,4 +1,4 @@
-function Hg-Import([string]$Path) {
+function Invoke-HgImport([string]$Path) {
 <#
 .SYNOPSIS
   Applies the given patch/diff file on the working directory.
@@ -11,7 +11,7 @@ function Hg-Import([string]$Path) {
 }
 
 
-function Hg-Export([string]$Path) {
+function Invoke-HgExport([string]$Path) {
 <#
 .SYNOPSIS
   Exports all uncommitted changes in the current HG repository

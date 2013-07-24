@@ -1,4 +1,4 @@
-function Elevate-Process
+function Grant-ElevatedProcess
 {
 <#
 .SYNOPSIS
@@ -12,4 +12,4 @@ function Elevate-Process
     [System.Diagnostics.Process]::Start($psi) | Out-Null
 }
 
-Set-Alias sudo Elevate-Process
+Set-Alias sudo Grant-ElevatedProcess
