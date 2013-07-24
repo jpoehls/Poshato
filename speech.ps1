@@ -13,4 +13,4 @@ function Invoke-VoiceSpeech([string]$what) {
 
     $voice.Speak($what, 1) | Out-Null
 }
-Set-Alias say Invoke-Speech
+Set-Alias say Invoke-VoiceSpeech
