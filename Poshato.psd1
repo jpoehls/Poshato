@@ -12,7 +12,7 @@
 #RootModule = ''
 
 # Version number of this module.
-ModuleVersion = '1.3.1'
+ModuleVersion = '1.4.0'
 
 # ID used to uniquely identify this module
 GUID = '3e73e643-1115-4b14-8baf-0cf96da2abec'
@@ -77,7 +77,8 @@ NestedModules = @(
 				  ".\PathHelpers.ps1",
 				  ".\speech.ps1",
 				  ".\svn_helpers.ps1",
-				  ".\xml.ps1")
+				  ".\xml.ps1",
+                  ".\Test-ZipFile.ps1")
 
 # Functions to export from this module
 FunctionsToExport = '*'
