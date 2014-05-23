@@ -70,7 +70,7 @@ NestedModules = @(
 				  ".\Grant-ElevatedProcess.ps1",
 				  ".\encoding-helpers.ps1",
 				  ".\Get-Uptime.ps1",
-				  ".\hg_helpers.ps1",
+				  ".\hg.psm1",
 				  ".\Join-Object.psm1",
 				  ".\mklink.psm1",
 				  ".\notes.ps1",
@@ -78,7 +78,8 @@ NestedModules = @(
 				  ".\speech.ps1",
 				  ".\svn_helpers.ps1",
 				  ".\xml.ps1",
-                  ".\Test-ZipFile.ps1")
+				  ".\Test-ZipFile.ps1",
+				  ".\phabricator.psm1")
 
 # Functions to export from this module
 FunctionsToExport = '*'
