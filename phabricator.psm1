@@ -24,7 +24,7 @@ function Invoke-Phabricator {
 #>
     param (
     [string]$Path = (Get-Location).Path,
-    [int]$Line = 0
+    [string]$Line = $null
     )
 
     $phabUrl = Get-PhabricatorRepoBaseUrl
@@ -42,7 +42,7 @@ function Invoke-Phabricator {
     $builder = new-object System.UriBuilder -ArgumentList @($phabUrl)
     $builder.Path += "/browse/$branch/" + $reporelpath.TrimStart('.\').Replace('\','/') + ";$revision"
 
-    if ($Line -gt 0) {
+    if ($Line) {
         $builder.Path += "`$$Line"
     }
 
