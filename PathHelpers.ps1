@@ -5,7 +5,6 @@ function Get-Directory([string]$Path) {
 #>
 
   return [IO.Path]::GetDirectoryName($Path)
-
 }
 
 function Get-ShortPath([string] $Path) { 
@@ -31,4 +30,36 @@ function Get-ScriptPath {
   } else {
     $pwd.Path
   }
+}
+
+function Resolve-ExactPath([string]$Path, [switch]$Relative) {
+<#
+.SYNOPSIS
+    Uses `Resolve-Path -LiteralPath` to resolve the path and then ensures that
+    the result path's casing matches the file system's casing.
+#>
+
+    $Path = (Resolve-Path -LiteralPath $Path).Path
+    
+    $exactPath = ""
+    $parts = $Path.Split(@([System.IO.Path]::DirectorySeparatorChar, [System.IO.Path]::AltDirectorySeparatorChar))
+
+    foreach ($p in $parts)
+    {
+        if ($exactPath.Length -gt 0) { $exactPath += [System.IO.Path]::DirectorySeparatorChar.ToString() }
+        if (([string]::IsNullOrEmpty($p)) -or $exactPath.Length -eq 0) {
+            $exactPath += $p
+        }
+        else
+        {
+            $exactPath = [System.IO.Directory]::GetFileSystemEntries($exactPath, $p)[0]
+        }
+    }
+
+    if ($Relative) {
+        return Resolve-Path -Relative -LiteralPath $exactPath
+    }
+    else {
+        return $exactPath
+    }
 }

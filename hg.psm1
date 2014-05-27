@@ -169,7 +169,7 @@ function Get-HgRelativePath {
         [string]$Path = (Get-Location).Path
     )
 
-    $Path = (Resolve-Path $Path).Path
+    $Path = Resolve-ExactPath $Path
     
     $hgroot = Get-HgRoot -Path $Path
     Push-Location $hgroot
