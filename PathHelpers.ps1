@@ -39,6 +39,8 @@ function Resolve-ExactPath([string]$Path, [switch]$Relative) {
     the result path's casing matches the file system's casing.
 #>
 
+    # Inspired by http://stackoverflow.com/a/11436327/31308
+
     $Path = (Resolve-Path -LiteralPath $Path).Path
     
     $exactPath = ""
