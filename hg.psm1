@@ -88,6 +88,25 @@ function Get-HgPaths {
     return $map
 }
 
+function globify([string]$text) {
+    $b = New-Object System.Text.StringBuilder
+    if ($input)
+    {    
+        foreach ($c in $text.ToCharArray()) {
+            if ([char]::IsLetter($c)) 
+            {
+                $b.Append("[" + [char]::ToLowerInvariant($c) + [char]::ToUpperInvariant($c) + "]") | Out-Null
+            }
+            else
+            {
+                $b.Append($c) | Out-Null
+            }
+        }
+    }
+
+    return $b.ToString()
+}
+
 function Get-HgParent {
 <#
 .SYNOPSIS
@@ -120,7 +139,7 @@ function Get-HgParent {
         }
     }
     else {
-        $stdout = hg --encoding utf8 --color never parents --template='{branch}\n{node}\n' `"$Path`"
+        $stdout = hg --encoding utf8 --color never parents --template='{branch}\n{node}\n' `"$(globify (Resolve-Path -Relative $Path))`"
         if ($LASTEXITCODE -ne 0) {
             $ok = $false
         }
