@@ -25,7 +25,23 @@ function Invoke-HgExport([string]$Path) {
 #>
 
   hg --encoding utf8 --color never diff --git | Out-File $Path -Encoding UTF8
-  hg --encoding utf8 --color never diff --stat
+  hg diff --stat
+}
+
+function Invoke-HgExportBranchDiff([string]$Branch, [string]$ParentBranch, [string]$Path) {
+<#
+.SYNOPSIS
+    Exports a diff of all changes made in the Branch,
+    excluding changesets from the ParentBranch to a git
+    formatted diff file at the specified Path.
+
+.EXAMPLE
+    Hg-ExportBranchDiff 'feature-branch' 'release-branch' changes.diff
+    # equivelant to: hg diff --git --rev "max(ancestors(feature-branch) and branch(release-branch)):feature-branch"
+#>
+    # Inspired by http://stackoverflow.com/a/10424821/31308
+    hg --encoding utf8 --color never diff --git --rev "max(ancestors($Branch) and branch($ParentBranch)):$Branch" | Out-File $Path -Encoding UTF8
+    hg diff --stat --rev "max(ancestors($Branch) and branch($ParentBranch)):$Branch"
 }
 
 function Get-HgRoot {
@@ -185,4 +201,4 @@ function Get-HgRelativePath {
     }
 }
 
-Export-ModuleMember -Function Invoke-HgImport, Invoke-HgExport, Get-HgRoot, Get-HgPaths, Get-HgParent, Get-HgRelativePath
+Export-ModuleMember -Function Invoke-HgImport, Invoke-HgExport, Get-HgRoot, Get-HgPaths, Get-HgParent, Get-HgRelativePath, Invoke-HgExportBranchDiff
